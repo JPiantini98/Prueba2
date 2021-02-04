@@ -38,10 +38,11 @@ namespace ClientList
         {
             using (CRUDEntities db = new CRUDEntities())
             {
-                var lst = from d in db.Clients
-                          select d;
+                var clientData = 
+                    from clientTable in db.Clients
+                    select clientTable;
 
-                dataGridView1.DataSource = lst.ToList();
+                dataGridView1.DataSource = clientData.ToList();
             }
         }
 
@@ -86,6 +87,12 @@ namespace ClientList
             }
 
             Refresh();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Views.Reports reports = new Views.Reports();
+            reports.ShowDialog();
         }
     }
 }
